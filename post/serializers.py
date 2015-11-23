@@ -7,10 +7,10 @@ __author__ = 'k1'
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ['title', 'created_date', 'updated_date']
+        fields = ['title', 'category', 'created_date', 'updated_date']
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     posts = PostSerializer(many=True, read_only=True)
 
     class Meta:

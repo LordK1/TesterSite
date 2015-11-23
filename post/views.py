@@ -7,10 +7,10 @@ from post.serializers import CategorySerializer, PostSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('-created_date')
     serializer_class = CategorySerializer
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-created_date')
     serializer_class = PostSerializer
