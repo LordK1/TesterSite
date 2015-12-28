@@ -16,7 +16,7 @@ class Category(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=100, null=False, blank=False)
-    category = models.ForeignKey(Category, related_name='posts')
+    category = models.ManyToManyField(Category, related_name='posts')
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
 
