@@ -1,4 +1,4 @@
-/TesterSite/.env
+#/TesterSite/.env
 /db.sqlite3
 # Created by .ignore support plugin (hsz.mobi)
 ### Python template
@@ -14,7 +14,7 @@ __pycache__/
 .Python
 env/
 build/
-/.env
+
 develop-eggs/
 dist/
 downloads/
