@@ -12,13 +12,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import environ
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-root = environ.Path(__file__) - 3  # three folder back (/a/b/c/ - 3 = /)
-env = environ.Env()  # set default values and casting
-environ.Env.read_env()  # reading .env file
 
 # print(env)
 
@@ -28,14 +23,12 @@ environ.Env.read_env()  # reading .env file
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'up7k0jhckffi#_i87l9uup%kgw%y^u064*_pkgmokmgyj=5i@j'
-# SECRET_KEY = env('SECRET_KEY')
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = [
-    '.example.com',  # Allow domain and subdomains
-    '.example.com.',  # Also allow FQDN and subdomains
-]
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,20 +78,12 @@ WSGI_APPLICATION = 'TesterSite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
-    'default':
-        env.db()
+    'default': dj_database_url.config(default='postgres://k1:19632@localhost:5432/TesterSite_DB')
+
 }
-
-#
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -116,6 +101,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-STATIC_ROOT = '/var/www/mydomain.com/static/'
+STATIC_ROOT = 'staticfiles'
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static')
+)
